@@ -1,0 +1,1 @@
+'What is the capitol of California?';'What is the capitol of Texas?';'What year is it?'
