@@ -7,21 +7,7 @@ var BasicCard = function(front, back){
 	this.front = front;
 	//Back contains back card text
 	this.back = back;
-
-	if(questionCount < 10){
-		inquirer.prompt([
-			{
-				type: 'input',
-				name: 'front',
-				message: 'What is the capital of California?'
-			}
-		]).then(function(answers)){
-			questionCount++;
-		}
-	}
 };
-
-
 
 //Exports the constructor
 module.exports = BasicCard;
