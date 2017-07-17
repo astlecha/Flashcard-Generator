@@ -70,6 +70,12 @@ var showCard = function(array, index){
 	var parsedQuestion = JSON.parse(question);
 	var text;
 	var correctAnswer;
+	if(parsedQuestion.type==='basic'){
+
+	}
+	else if(parsedQuestion.type==='cloze'){
+		
+	}
 }
 
 
