@@ -50,9 +50,19 @@ var createCard = function(){
 			}
 		}
 	]).then(function(results){
-
 		var newCard = new BasicCard(results.front, results.back);
 		newCard.create();
-	
 	})
+};
+
+
+var nextAction = function(){
+	inquirer.prompt([
+		{
+			type: 'list',
+			name: 'selectNext',
+			message: 'What next?',
+			choices: [],
+		}
+	])
 }
