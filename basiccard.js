@@ -6,7 +6,7 @@ var BasicCard = function(front, back){
 	//Back contains back card text
 	this.back = back;
 
-	this.frontCards = function(){
+	this.create = function(){
 
 		frontArr.forEach(function callback(currentValue, index, array){
 			inquirer.prompt([

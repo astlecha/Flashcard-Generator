@@ -52,6 +52,7 @@ var createCard = function(){
 	]).then(function(results){
 
 		var newCard = new BasicCard(results.front, results.back);
+		newCard.create();
 	
 	})
 }
