@@ -4,6 +4,23 @@ var ClozeCard = require('./clozecard.js');
 var inquirer = require('inquirer');
 var fs = require('fs');
 
+inquirer.prompt([
+	{
+		type: 'list',
+		name: 'firstOption',
+		message: 'What would you like to do?',
+		choices: [{ name : 'new-card'},{ name : 'display-cards'}]
+	}
+
+]).then(function(answer){
+	if(answer.firstOption==='new-card'){
+		createCard();
+	}
+	else if(answer.firstOption==='display-cards'){
+		displayCards();
+	}
+});
+
 var displayCards = function(){
 	fs.readFile('questions.txt', 'utf8', function(error, data){
 		if(error){
@@ -64,5 +81,7 @@ var nextAction = function(){
 			message: 'What next?',
 			choices: [],
 		}
-	])
+	]).then(function(answer){
+
+	})
 }
