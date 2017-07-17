@@ -4,7 +4,7 @@ var ClozeCard = require('./clozecard.js');
 var inquirer = require('inquirer');
 var fs = require('fs');
 
-inquirer.prompt([
+inquirer.prompt([{
 	{
 		type: 'list',
 		name: 'firstOption',
@@ -12,7 +12,7 @@ inquirer.prompt([
 		choices: [{ name : 'new-card'},{ name : 'display-cards'}]
 	}
 
-]).then(function(answer){
+}]).then(function(answer){
 	if(answer.firstOption==='new-card'){
 		createCard();
 	}
@@ -20,24 +20,6 @@ inquirer.prompt([
 		displayCards();
 	}
 });
-
-var displayCards = function(){
-	fs.readFile('questions.txt', 'utf8', function(error, data){
-		if(error){
-			console.log('Error occurred: '+error);
-		}
-		var questions = data.split(';');
-		var count = 0;
-		showCard(questions, count);
-	})
-}
-
-var showCard = function(array, index){
-	question = array[index];
-	var parsedQuestion = JSON.parse(question);
-	var text;
-	var correctAnswer;
-}
 
 var createCard = function(){
 	inquirer.prompt([
@@ -71,6 +53,24 @@ var createCard = function(){
 		newCard.create();
 	})
 };
+
+var displayCards = function(){
+	fs.readFile('questions.txt', 'utf8', function(error, data){
+		if(error){
+			console.log('Error occurred: '+error);
+		}
+		var questions = data.split(';');
+		var count = 0;
+		showCard(questions, count);
+	})
+}
+
+var showCard = function(array, index){
+	question = array[index];
+	var parsedQuestion = JSON.parse(question);
+	var text;
+	var correctAnswer;
+}
 
 
 var nextAction = function(){
