@@ -4,22 +4,24 @@ var ClozeCard = require('./clozecard.js');
 var inquirer = require('inquirer');
 var fs = require('fs');
 
-inquirer.prompt([{
-	{
-		type: 'list',
-		name: 'firstOption',
-		message: 'What would you like to do?',
-		choices: [{ name : 'new-card'},{ name : 'display-cards'}]
-	}
+var initialChoice = function(){
+	inquirer.prompt([{
+		{
+			type: 'list',
+			name: 'firstOption',
+			message: 'What would you like to do?',
+			choices: [{ name : 'new-card'},{ name : 'display-cards'}]
+		}
 
-}]).then(function(answer){
-	if(answer.firstOption==='new-card'){
-		createCard();
-	}
-	else if(answer.firstOption==='display-cards'){
-		displayCards();
-	}
-});
+	}]).then(function(answer){
+		if(answer.firstOption==='new-card'){
+			createCard();
+		}
+		else if(answer.firstOption==='display-cards'){
+			displayCards();
+		}
+	});
+}
 
 var createCard = function(){
 	inquirer.prompt([
@@ -91,18 +93,6 @@ var showCard = function(array, index){
 			console.log('Incorrect.');
 		}
 	})
-}
+};
 
-
-var nextAction = function(){
-	inquirer.prompt([
-		{
-			type: 'list',
-			name: 'selectNext',
-			message: 'What next?',
-			choices: [],
-		}
-	]).then(function(answer){
-
-	})
-}
+initialChoice();
