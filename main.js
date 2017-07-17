@@ -16,16 +16,38 @@ var displayCards = function(){
 }
 
 var showCard = function(array, index){
-	question = array[index]
+	question = array[index];
+	var parsedQuestion = JSON.parse(question);
+	var text;
+	var correctAnswer;
 }
 
 var createCard = function(){
-
 	inquirer.prompt([
 		{
 			type: 'input',
 			name: 'front',
-			message: 'What do you want on the front of your card?'
+			message: 'What do you want on the front of your card?',
+			validate: function(input){
+				if(input===''){
+					console.log('Please enter something.')
+					return false;
+				} else{
+					return true;
+				}
+			}
+		}, {
+			type: 'input',
+			name: 'back',
+			message: 'What do you want on the back of your card?',
+			validate: function(input){
+				if(input===''){
+					console.log('Please enter something.')
+					return false;
+				} else{
+					return true;
+				}
+			}
 		}
 	]).then(function(results){
 
