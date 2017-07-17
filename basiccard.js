@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 //Constructor accepts 2 arguments
 var BasicCard = function(front, back){
 
@@ -8,19 +10,19 @@ var BasicCard = function(front, back){
 
 	this.create = function(){
 
-		frontArr.forEach(function callback(currentValue, index, array){
-			inquirer.prompt([
-				{
-					type: 'input',
-					name: index+1,
-					message: currentValue
-				}
-			]).then(function(cardData){
-				console.log(cardData.message);
-				console.log(cardData);
-			});
-		});
+		//Create var with card data
+		var cardData = {
+			front : this.front,
+			back : this.back,
+			type: 'basic',
+		};
 
+		//Append card data to text file
+		fs.appendFile('questions.txt', JSON.stringify(cardData) + ';','utf8', function(error){
+			if(error){
+				console.log(error);
+			}
+		})
 	};
 
 };
