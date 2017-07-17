@@ -7,7 +7,7 @@ var BasicCard = require('./basiccard.js');
 var ClozeCard = function(text, cloze){
 	this.text = text;
 	this.cloze = cloze;
-	this.clozeDeleted =;
+	this.clozeDeleted = this.text.replace(this.cloze, '______');
 	this.create = function(){
 		var cardData = {
 			type : 'cloze',
