@@ -68,13 +68,15 @@ var displayCards = function(){
 var showCard = function(array, index){
 	question = array[index];
 	var parsedQuestion = JSON.parse(question);
-	var text;
-	var correctAnswer;
+	var cardFront;
+	var cardBack;
 	if(parsedQuestion.type==='basic'){
-
+		cardFront = parsedQuestion.front;
+		cardBack = parsedQuestion.back;
 	}
 	else if(parsedQuestion.type==='cloze'){
-		
+		cardFront = parsedQuestion.clozeDeleted;
+		cardBack = parsedQuestion.cloze;
 	}
 }
 
