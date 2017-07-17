@@ -78,6 +78,19 @@ var showCard = function(array, index){
 		cardFront = parsedQuestion.clozeDeleted;
 		cardBack = parsedQuestion.cloze;
 	}
+	inquirer.prompt([
+		{
+			name: 'response',
+			message: cardFront,
+		}
+	]).then(function(answer){
+		if(answer.response===cardBack){
+			console.log('Good job!');
+		}
+		else{
+			console.log('Incorrect.');
+		}
+	})
 }
 
 
