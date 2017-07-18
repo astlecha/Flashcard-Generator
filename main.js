@@ -102,18 +102,12 @@ var showCard = function(array, index){
 			console.log('Good job!');
 			if (index < array.length - 1) {
             	showCard(array, index + 1);
-            } else{
-            	console.log('All done!');
-            	return;
             }
 		}
 		else{
 			console.log('Incorrect.');
 			if (index < array.length - 1) {
             	showCard(array, index + 1);
-            } else {
-            	console.log('All done!');
-            	return;
             }
 		}
 	})

@@ -1,1 +1,1 @@
-{"front":"What is my name?","back":"Charlotte Astle","type":"basic"};{"front":"What is the capitol of California?","back":"Sacramento","type":"basic"};{"front":"What is the french word for 'yes'?","back":"Oui","type":"basic"};
+{"front":"What is my name?","back":"Charlotte Astle","type":"basic"};{"front":"What is the capitol of California?","back":"Sacramento","type":"basic"};{"front":"What is the french word for 'yes'?","back":"Oui","type":"basic"};{"front":"Who wrote The Great Gatsby?","back":"F. Scott Fitzgerald","type":"basic"};
