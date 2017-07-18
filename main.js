@@ -5,15 +5,15 @@ var inquirer = require('inquirer');
 var fs = require('fs');
 
 var initialChoice = function(){
-	inquirer.prompt([{
+	//Allow user to either make BasicCard or display all cards.
+	inquirer.prompt([
 		{
 			type: 'list',
 			name: 'firstOption',
 			message: 'What would you like to do?',
 			choices: [{ name : 'new-card'},{ name : 'display-cards'}]
 		}
-
-	}]).then(function(answer){
+	]).then(function(answer){
 		if(answer.firstOption==='new-card'){
 			createCard();
 		}
@@ -29,6 +29,7 @@ var createCard = function(){
 			type: 'input',
 			name: 'front',
 			message: 'What do you want on the front of your card?',
+			//Make sure user entered a value.
 			validate: function(input){
 				if(input===''){
 					console.log('Please enter something.')
@@ -41,6 +42,7 @@ var createCard = function(){
 			type: 'input',
 			name: 'back',
 			message: 'What do you want on the back of your card?',
+			//Make sure user entered a value.
 			validate: function(input){
 				if(input===''){
 					console.log('Please enter something.')
@@ -51,8 +53,11 @@ var createCard = function(){
 			}
 		}
 	]).then(function(results){
+		//Create new card by inserting inquirer results into constructor function.
 		var newCard = new BasicCard(results.front, results.back);
 		newCard.create();
+		console.log('Your card was added to the stack!');
+		initialChoice();
 	})
 };
 
@@ -61,6 +66,7 @@ var displayCards = function(){
 		if(error){
 			console.log('Error occurred: '+error);
 		}
+		//Split questions on the text file by semicolon.
 		var questions = data.split(';');
 		var count = 0;
 		showCard(questions, count);
@@ -69,9 +75,11 @@ var displayCards = function(){
 
 var showCard = function(array, index){
 	question = array[index];
+	//Parse strings from questions.txt
 	var parsedQuestion = JSON.parse(question);
 	var cardFront;
 	var cardBack;
+	//Assign front and back values from questions.txt
 	if(parsedQuestion.type==='basic'){
 		cardFront = parsedQuestion.front;
 		cardBack = parsedQuestion.back;
@@ -80,19 +88,28 @@ var showCard = function(array, index){
 		cardFront = parsedQuestion.clozeDeleted;
 		cardBack = parsedQuestion.cloze;
 	}
+	//Show front of card
 	inquirer.prompt([
 		{
 			name: 'response',
 			message: cardFront,
 		}
 	]).then(function(answer){
+		//Check if user's answer matches back of card
 		if(answer.response===cardBack){
 			console.log('Good job!');
+			if(index<array.length-1){
+				console.log(array, index+1);
+			};
 		}
 		else{
 			console.log('Incorrect.');
+			if(index<array.length-1){
+				console.log(array, index+1);
+			};
 		}
 	})
 };
 
+//Start our Flashcard-Generator app!
 initialChoice();

@@ -13,7 +13,7 @@ var ClozeCard = function(text, cloze){
 			type : 'cloze',
 			text : this.text,
 			cloze : this.cloze,
-			clozeDeleted: this.clozeDeleted;
+			clozeDeleted: this.clozeDeleted
 		};
 
 		//Append card data to text file
