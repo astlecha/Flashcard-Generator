@@ -92,21 +92,15 @@ var showCard = function(array, index){
 	inquirer.prompt([
 		{
 			name: 'response',
-			message: cardFront,
+			message: index+1 + '. ' + cardFront,
 		}
 	]).then(function(answer){
 		//Check if user's answer matches back of card
 		if(answer.response===cardBack){
 			console.log('Good job!');
-			if(index<array.length-1){
-				console.log(array, index+1);
-			};
 		}
 		else{
 			console.log('Incorrect.');
-			if(index<array.length-1){
-				console.log(array, index+1);
-			};
 		}
 	})
 };
