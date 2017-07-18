@@ -11,13 +11,13 @@ var initialChoice = function(){
 			type: 'list',
 			name: 'firstOption',
 			message: 'What would you like to do?',
-			choices: [{ name : 'new-card'},{ name : 'display-cards'}]
+			choices: [{ name : 'new-card'},{ name : 'go-through-deck'}]
 		}
 	]).then(function(answer){
 		if(answer.firstOption==='new-card'){
 			createCard();
 		}
-		else if(answer.firstOption==='display-cards'){
+		else if(answer.firstOption==='go-through-deck'){
 			displayCards();
 		}
 	});
@@ -56,7 +56,7 @@ var createCard = function(){
 		//Create new card by inserting inquirer results into constructor function.
 		var newCard = new BasicCard(results.front, results.back);
 		newCard.create();
-		console.log('Your card was added to the stack!');
+		console.log('\n-------\nYour card was added to the stack!\n-------\n');
 		initialChoice();
 	})
 };
@@ -88,19 +88,33 @@ var showCard = function(array, index){
 		cardFront = parsedQuestion.clozeDeleted;
 		cardBack = parsedQuestion.cloze;
 	}
+
+	// for(var i=0; i<)
 	//Show front of card
 	inquirer.prompt([
 		{
 			name: 'response',
-			message: index+1 + '. ' + cardFront,
+			message: 'Card ' + (index+1) + ': ' + cardFront,
 		}
 	]).then(function(answer){
 		//Check if user's answer matches back of card
 		if(answer.response===cardBack){
 			console.log('Good job!');
+			if (index < array.length - 1) {
+            	showCard(array, index + 1);
+            } else{
+            	console.log('All done!');
+            	return;
+            }
 		}
 		else{
 			console.log('Incorrect.');
+			if (index < array.length - 1) {
+            	showCard(array, index + 1);
+            } else {
+            	console.log('All done!');
+            	return;
+            }
 		}
 	})
 };
